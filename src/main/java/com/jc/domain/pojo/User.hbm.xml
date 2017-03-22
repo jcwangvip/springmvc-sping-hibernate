@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!-- 	<class name="com.bjpowernode.egov.domain.pojo.User" table="t_user">		 -->
+	<class name="com.jc.domain.pojo.User" table="t_user">		
+		<id name="usercode" length="32">		
+			 <generator class="assigned" />
+		</id>
+		<property name="username" length="20"/>
+		<property name="userpswd" length="20"/>
+		<property name="orgtype" length="1"/>
+		<!-- 
+		<property name="regdate" length="19" update="false"/>
+		 -->
+		<property name="regdate" length="19"/>
+	</class>
+</hibernate-mapping>
