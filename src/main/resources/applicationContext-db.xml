@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+			default-autowire="byName"
+			>
+	<!-- 启用AOP -->
+	<aop:aspectj-autoproxy />
+
+	<!-- 加载属性资源文件到Spring环境 -->
+	<bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:db-config.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value="${url}"></property>
+		<property name="driverClass" value="${driverClass}"></property>
+		<property name="user" value="${user}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="maxPoolSize" value="${maxPoolSize}"></property>		
+		<property name="minPoolSize" value="${minPoolSize}"></property>		
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="c3p0"></property>
+		
+		<property name="hibernateProperties">
+			<props>
+<!-- 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				
+				<!-- 
+					hibernate.hbm2ddl.auto属性表示创建SessionFactory对象时，会自动根据映射文件创建数据库的表
+					create-drop : 先执行drop删除表，然后SessionFactory对象创建时，再执行create创建表，当SessionFactory销毁时，再执行drop删除表。
+					create : 先执行一个drop删除映射的表，然后再重新创建表。
+					update : 根据实体类映射，更新表的结构，但是已有表结构和数据保留。
+					validate : 验证实体类映射和表结构是否一致，不一致会抛异常
+				 -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/jc/domain/pojo</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- 事务扩展对象 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="c3p0"></property>
+	</bean>
+	
+	<!-- 配置声明式事务 -->
+	<aop:config>	
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+		<aop:aspect>
+			<aop:pointcut expression="execution(* com.jc.service.*.*(..))" id="txPointcut"/>
+		</aop:aspect>		
+	</aop:config>	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT" rollback-for="java.lang.Exception"/>
+			<tx:method name="remove*" propagation="REQUIRED" isolation="DEFAULT" rollback-for="java.lang.Exception"/>
+			<tx:method name="edit*" propagation="REQUIRED" isolation="DEFAULT" rollback-for="java.lang.Exception"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="query*" read-only="true"/>
+			<tx:method name="check*" read-only="true"/>			
+			<tx:method name="get*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	
+</beans>

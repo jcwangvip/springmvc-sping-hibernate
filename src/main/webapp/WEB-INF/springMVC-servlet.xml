@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<!-- ========================= 视图解析器========================= -->
+	<bean id="resourceBundleViewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+	 	<!-- 默认加载的属性资源文件的名称是：views
+	 		如果我们定义的文件名，不是默认的名称，那么需要设置basenames参数。
+	 	 -->  
+	 	<property name="basenames">
+	 		<list>
+	 			<value>view</value>
+	 		</list>
+	 	</property>
+	 	<!-- order值越小，优先级越高 -->  
+	 	<property name="order" value="1"></property>
+	</bean>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+		 <!-- 一般总是赋予最大值，表示优先级低 -->
+		<property name="order" value="2"></property>
+	</bean>
+
+	<!-- ========================= 映射解析器========================= -->
+	<bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="loggerInterceptor"/>
+				<ref bean="timerInterceptor"/>
+			</list>
+		</property>
+	
+		<property name="urlMap">
+			<map>
+				<entry key="/multi-*.html" value-ref="multiActionController"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	
+	<!-- ========================= 声明控制器========================= -->
+
+	<bean id="multiActionController" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+		<property name="methodNameResolver">
+			<ref bean="methodNameResolver"/>
+		</property>
+		<property name="delegate"> <!-- 委托 -->
+			<ref bean="loginController"/>
+		</property>
+	</bean>
+	
+	<bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+		<property name="mappings">
+			<props>
+				<prop key="/multi-login.html">login</prop>
+				<prop key="/multi-logout.html">logout</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- ========================= 声明拦截器========================= -->
+	<bean id="loggerInterceptor" class="com.jc.web.interceptor.LoggerInterceptor"></bean>
+	<bean id="timerInterceptor" class="com.jc.web.interceptor.TimerInterceptor"></bean>
+	
+	<!-- ========================= 异常解析器=========================
+	<bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
+		</property>
+	</bean>
+	 -->
+	
+	
+	
+	
+</beans>

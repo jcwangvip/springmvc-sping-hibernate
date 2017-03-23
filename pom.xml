@@ -44,13 +44,22 @@
 	    <artifactId>hibernate-core</artifactId>
 	    <version>4.3.7.Final</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc--> 
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>4.3.7.RELEASE</version>
+	</dependency>
 
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-orm</artifactId>
-	    <version>4.0.5.RELEASE</version>
+	    <version>4.3.6.RELEASE</version>
 	</dependency>
+
+
 		
   </dependencies>
   

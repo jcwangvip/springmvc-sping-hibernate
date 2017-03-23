@@ -43,7 +43,6 @@ public class LoginController extends MultiActionController {
 			session.removeAttribute("session_user");
 			session.invalidate(); 
 		}
-		
 		return new ModelAndView("login");
 	}
 }
