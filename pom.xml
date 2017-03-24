@@ -34,9 +34,13 @@
 	    <version>4.3.6.RELEASE</version>
 	</dependency>
 	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+	    <version>4.3.6.RELEASE</version>
+	</dependency>
 	
-
-
 	
 	<!-- ORM -->
 	<dependency>
@@ -58,7 +62,50 @@
 	    <artifactId>spring-orm</artifactId>
 	    <version>4.3.6.RELEASE</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/oracle/ojdbc14 -->
+	<dependency>
+	    <groupId>com.oracle</groupId>
+	    <artifactId>ojdbc7</artifactId>
+	    <version>12.1.0.1</version>
+	</dependency>
 
+
+	
+
+
+	<!-- outer start -->
+	
+	<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+	<dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjrt</artifactId>
+	    <version>1.8.9</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+	<dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjweaver</artifactId>
+	    <version>1.8.9</version>
+	</dependency>
+	
+	
+	<!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+	<dependency>
+	    <groupId>com.mchange</groupId>
+	    <artifactId>c3p0</artifactId>
+	    <version>0.9.5.2</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.mchange/mchange-commons-java -->
+	<dependency>
+	    <groupId>com.mchange</groupId>
+	    <artifactId>mchange-commons-java</artifactId>
+	    <version>0.2.10</version>
+	</dependency>
+	
+	<!-- outer  end  -->
 
 		
   </dependencies>

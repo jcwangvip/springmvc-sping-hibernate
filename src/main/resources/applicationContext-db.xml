@@ -30,7 +30,7 @@
 		<property name="minPoolSize" value="${minPoolSize}"></property>		
 	</bean>
 	
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="c3p0"></property>
 		
 		<property name="hibernateProperties">

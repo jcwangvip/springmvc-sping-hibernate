@@ -1,7 +1,5 @@
 package com.jc.domain.dao;
 
-import java.sql.SQLException;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -14,8 +12,8 @@ public class UserDAO extends HibernateDaoSupport{
 	
 	@SuppressWarnings("unchecked")
 	public User login(final String usercode,final String userpswd) throws Exception{
-		return null;
-		/*return (User)this.getHibernateTemplate().execute(new HibernateCallback(){
+//		return null;
+		return (User)this.getHibernateTemplate().execute(new HibernateCallback(){
 
 			public Object doInHibernate(Session session)
 					throws HibernateException {
@@ -25,7 +23,7 @@ public class UserDAO extends HibernateDaoSupport{
 			}
 
 			
-		});*/
+		});
 		
 	}
 }
