@@ -35,7 +35,7 @@
 		
 		<property name="hibernateProperties">
 			<props>
-<!-- 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
@@ -46,7 +46,7 @@
 					create : 先执行一个drop删除映射的表，然后再重新创建表。
 					update : 根据实体类映射，更新表的结构，但是已有表结构和数据保留。
 					validate : 验证实体类映射和表结构是否一致，不一致会抛异常
-				 -->
+				-->
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
@@ -59,12 +59,12 @@
 	</bean>
 	
 	
-	<!-- 事务扩展对象 -->
+<!-- 	事务扩展对象 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="c3p0"></property>
 	</bean>
 	
-	<!-- 配置声明式事务 -->
+<!-- 	配置声明式事务 -->
 	<aop:config>	
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
 		<aop:aspect>
@@ -82,5 +82,5 @@
 			<tx:method name="get*" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
-	
+	 
 </beans>

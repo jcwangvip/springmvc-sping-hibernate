@@ -12,7 +12,6 @@ public class UserDAO extends HibernateDaoSupport{
 	
 	@SuppressWarnings("unchecked")
 	public User login(final String usercode,final String userpswd) throws Exception{
-//		return null;
 		return (User)this.getHibernateTemplate().execute(new HibernateCallback(){
 
 			public Object doInHibernate(Session session)
@@ -21,8 +20,6 @@ public class UserDAO extends HibernateDaoSupport{
 							.add(Restrictions.eq("usercode", usercode))
 							.uniqueResult();
 			}
-
-			
 		});
 		
 	}

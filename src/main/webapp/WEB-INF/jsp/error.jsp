@@ -21,10 +21,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    	<form action="multi-login.html" method="post">
-    		用户代码：<input type="text" name="usercode"><br>
-    		用户密码：<input type="password" name="userpswd"><br>
-    			<input type="submit" value="登录">
-    	</form>
+    	系统出现异常，请与系统管理员联系!<%=basePath%>
   </body>
 </html>

@@ -62,7 +62,7 @@
 	<bean id="loggerInterceptor" class="com.jc.web.interceptor.LoggerInterceptor"></bean>
 	<bean id="timerInterceptor" class="com.jc.web.interceptor.TimerInterceptor"></bean>
 	
-	<!-- ========================= 异常解析器=========================
+	<!-- ========================= 异常解析器========================= -->
 	<bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
@@ -70,7 +70,7 @@
 			</props>
 		</property>
 	</bean>
-	 -->
+	
 	
 	
 	

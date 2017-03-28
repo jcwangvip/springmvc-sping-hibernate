@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    	登录成功。${sessionScope.session_user.usercode }  || <a href="/multi-logout.html">注销</a>
+    	登录成功。${sessionScope.session_user.usercode }  || <a href="multi-logout.html">注销</a>
     	
     	
   </body>

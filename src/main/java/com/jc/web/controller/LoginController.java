@@ -31,7 +31,7 @@ public class LoginController extends MultiActionController {
 		User entityUser = userService.checkUser(usercode, userpswd);
 		HttpSession session = request.getSession(true);
 		session.setAttribute("session_user", entityUser);
-		
+
 		return new ModelAndView("success");
 	}
 	
@@ -45,4 +45,5 @@ public class LoginController extends MultiActionController {
 		}
 		return new ModelAndView("login");
 	}
+	
 }
